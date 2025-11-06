@@ -226,7 +226,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="main-footer">
         <div className="footer-content">
-          <span>© 2025 printOrchestra.</span>
+          <span>© 2025 printOrchestra</span>
           <span className="separator">|</span>
           <span>Engineering Tomorrow</span>
         </div>
