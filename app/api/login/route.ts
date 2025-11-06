@@ -1,5 +1,4 @@
 import { SignJWT } from 'jose';
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -10,12 +9,20 @@ export async function POST(request: Request) {
 
   // 1. Check if the password is correct
   if (password !== SITE_PASSWORD) {
-    return new Response('Invalid password', { status: 401 });
+    // Return a 401 Unauthorized response
+    return new Response(JSON.stringify({ error: 'Invalid password' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   // 2. Get the secret for signing the token
   if (!JWT_SECRET) {
-    throw new Error('JWT_SECRET environment variable is not set');
+    console.error('JWT_SECRET environment variable is not set');
+    return new Response(JSON.stringify({ error: 'Server configuration error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
   const secret = new TextEncoder().encode(JWT_SECRET);
 
@@ -27,17 +34,25 @@ export async function POST(request: Request) {
       .setExpirationTime('1d') // Token expires in 1 day
       .sign(secret);
 
-    // 4. Set the token in a secure, httpOnly cookie
-    cookies().set('token', token, {
+    // 4. Create the success response
+    const response = NextResponse.json({ success: true });
+
+    // 5. Set the token in a secure, httpOnly cookie on the response
+    response.cookies.set('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       path: '/',
       maxAge: 60 * 60 * 24, // 1 day in seconds
     });
 
-    return NextResponse.json({ success: true });
+    // 6. Return the response with the cookie
+    return response;
+
   } catch (error) {
     console.error('Error creating JWT:', error);
-    return new Response('Internal Server Error', { status: 500 });
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
