@@ -23,6 +23,35 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
 
   const hasImages = images && images.length > 0;
 
+  // Preload adjacent images in the background for instant navigation
+  useEffect(() => {
+    if (!hasImages) return;
+
+    const isProd = process.env.NODE_ENV === "production";
+    const mkUrl = (path: string, width = 1200, quality = 75) =>
+      isProd ? `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}` : path;
+
+    const idxs: number[] = [];
+    const len = images.length;
+    // Preload next two and previous one
+    idxs.push((index + 1) % len);
+    idxs.push((index + 2) % len);
+    idxs.push((index - 1 + len) % len);
+
+    const unique = Array.from(new Set(idxs));
+    unique.forEach((i) => {
+      const img = images[i];
+      if (!img) return;
+      // Warm one or two common widths that match our sizes map
+      [1000, 1400].forEach((w) => {
+        const pre = new Image();
+        pre.decoding = "async";
+        pre.loading = "eager" as any; // hint; ignored by programmatic Image in some browsers
+        pre.src = mkUrl(img.src, w);
+      });
+    });
+  }, [index, images, hasImages]);
+
   const next = useCallback(() => {
     if (!hasImages) return;
     setIndex((i) => (i + 1) % images.length);
