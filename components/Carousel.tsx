@@ -37,7 +37,7 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
       if (!img) continue;
       // Stagger requests to avoid burst
       setTimeout(() => {
-        [1000].forEach((w) => {
+        [1080].forEach((w) => {
           if (typeof window === "undefined" || !window.Image) return;
           const pre = new window.Image();
           pre.decoding = "async";
@@ -66,7 +66,7 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
       const img = images[i];
       if (!img) return;
       // Warm one or two common widths that match our sizes map
-      [1000, 1400].forEach((w) => {
+      [1080, 1200].forEach((w) => {
         if (typeof window === "undefined" || !window.Image) return;
         const pre = new window.Image();
         pre.decoding = "async";
