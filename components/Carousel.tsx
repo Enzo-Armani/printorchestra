@@ -47,8 +47,9 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
         if (typeof window === "undefined" || !window.Image) return;
         const pre = new window.Image();
         pre.decoding = "async";
-        // @ts-expect-error: not all browsers expose loading on constructed Image
-        pre.loading = "eager";
+        if ("loading" in pre) {
+          (pre as HTMLImageElement).loading = "eager";
+        }
         pre.src = mkUrl(img.src, w);
       });
     });
