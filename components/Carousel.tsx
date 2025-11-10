@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+const UNOPTIMIZED = process.env.NODE_ENV !== "production";
+
 export type CarouselImage = {
   src: string;
   alt: string;
@@ -71,7 +73,7 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
             fill
             sizes="(min-width: 1024px) 1000px, 90vw"
             priority={false}
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             className="carousel-img"
           />
         </div>

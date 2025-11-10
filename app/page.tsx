@@ -5,6 +5,8 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import Image from 'next/image';
 import Carousel from '@/components/Carousel';
 
+const UNOPTIMIZED = process.env.NODE_ENV !== 'production';
+
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
@@ -170,13 +172,9 @@ export default function Home() {
         <div className="header-inner">
           <div className="logo-container">
             <a
-              href="#"
+              href="/"
               className="logo-link"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              aria-label="Scroll to top"
+              aria-label="Go to home"
             >
               <span className="logo-text">print<span className="logo-accent">Orchestra</span></span>
             </a>
@@ -209,7 +207,7 @@ export default function Home() {
               width={900}
               height={900}
               priority
-              unoptimized
+              unoptimized={UNOPTIMIZED}
               sizes="(min-width: 1024px) 40vw, 90vw"
               className="hero-image"
             />
@@ -256,7 +254,7 @@ export default function Home() {
             width={1600}
             height={900}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
@@ -273,7 +271,7 @@ export default function Home() {
             width={1600}
             height={900}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
@@ -290,7 +288,7 @@ export default function Home() {
             width={1600}
             height={900}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
@@ -307,7 +305,7 @@ export default function Home() {
             width={1600}
             height={900}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
@@ -350,7 +348,7 @@ export default function Home() {
             width={1600}
             height={1200}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
@@ -391,7 +389,7 @@ export default function Home() {
             width={1600}
             height={1200}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
@@ -432,7 +430,7 @@ export default function Home() {
             width={1600}
             height={1200}
             className="ai-image"
-            unoptimized
+            unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
           />
         </div>
