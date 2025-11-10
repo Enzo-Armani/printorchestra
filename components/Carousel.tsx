@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import NextImage from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const UNOPTIMIZED = process.env.NODE_ENV !== "production";
@@ -44,9 +44,11 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
       if (!img) return;
       // Warm one or two common widths that match our sizes map
       [1000, 1400].forEach((w) => {
-        const pre = new Image();
+        if (typeof window === "undefined" || !window.Image) return;
+        const pre = new window.Image();
         pre.decoding = "async";
-        pre.loading = "eager" as any; // hint; ignored by programmatic Image in some browsers
+        // @ts-expect-error: not all browsers expose loading on constructed Image
+        pre.loading = "eager";
         pre.src = mkUrl(img.src, w);
       });
     });
@@ -95,7 +97,7 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
         </button>
 
         <div className="carousel-stage">
-          <Image
+          <NextImage
             key={current.src}
             src={current.src}
             alt={current.alt}
