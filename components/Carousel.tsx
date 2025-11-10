@@ -23,13 +23,36 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
 
   const hasImages = images && images.length > 0;
 
+  const isProd = process.env.NODE_ENV === "production";
+  const QUALITY = 60;
+  const mkUrl = (path: string, width = 1000, quality = QUALITY) =>
+    isProd ? `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}` : path;
+
+  // Preload a small batch of initial images on mount to warm edge cache
+  useEffect(() => {
+    if (!hasImages) return;
+    const batch = Math.min(8, images.length);
+    for (let i = 0; i < batch; i++) {
+      const img = images[i];
+      if (!img) continue;
+      // Stagger requests to avoid burst
+      setTimeout(() => {
+        [1000].forEach((w) => {
+          if (typeof window === "undefined" || !window.Image) return;
+          const pre = new window.Image();
+          pre.decoding = "async";
+          if ("loading" in pre) {
+            (pre as HTMLImageElement).loading = "eager";
+          }
+          pre.src = mkUrl(img.src, w, QUALITY);
+        });
+      }, i * 150);
+    }
+  }, [hasImages, images]);
+
   // Preload adjacent images in the background for instant navigation
   useEffect(() => {
     if (!hasImages) return;
-
-    const isProd = process.env.NODE_ENV === "production";
-    const mkUrl = (path: string, width = 1200, quality = 75) =>
-      isProd ? `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}` : path;
 
     const idxs: number[] = [];
     const len = images.length;
@@ -50,7 +73,7 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
         if ("loading" in pre) {
           (pre as HTMLImageElement).loading = "eager";
         }
-        pre.src = mkUrl(img.src, w);
+        pre.src = mkUrl(img.src, w, QUALITY);
       });
     });
   }, [index, images, hasImages]);
@@ -104,7 +127,9 @@ export default function Carousel({ images, initialIndex = 0, id }: Props) {
             alt={current.alt}
             fill
             sizes="(min-width: 1024px) 1000px, 90vw"
-            priority={false}
+            quality={QUALITY}
+            fetchPriority={index === 0 ? "high" : undefined}
+            priority={index === 0}
             unoptimized={UNOPTIMIZED}
             className="carousel-img"
           />
