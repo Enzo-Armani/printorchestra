@@ -31,6 +31,12 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [inGallery, setInGallery] = useState(false);
+  const [isCost1Open, setIsCost1Open] = useState(false);
+  const [isCost2Open, setIsCost2Open] = useState(false);
+  const [isCost3Open, setIsCost3Open] = useState(false);
+  const [isTime1Open, setIsTime1Open] = useState(false);
+  const [isTime2Open, setIsTime2Open] = useState(false);
+  const [isTime3Open, setIsTime3Open] = useState(false);
 
   useEffect(() => {
     // Set target date to November 10th, 2025 at 8:00 AM
@@ -262,8 +268,14 @@ export default function Home() {
 
       {/* Next Feature Section */}
       <section className="ai-section">
-        <h2 className="ai-heading">Immersives UI</h2>
-        <p className="ai-paragraph">Space-Joystick mit 6 Freiheitsgraden für die immersive Visualisierung von 3D-Modellen.</p>
+        <h2 className="ai-heading">Neuartige UI & Steuerung</h2>
+        <div className="ai-paragraph" style={{ textAlign: 'left', fontSize: '1.05rem', lineHeight: 1.8 }}>
+          <div>- Space-Joystick mit 6 Freiheitsgraden für die immersive Visualisierung von 3D-Modellen.</div>
+          <div>- Leistungsstarker Controller mit KI-Betriebssystem (kein externer Computer erforderlich)</div>
+          <div>- Integrierte, hochwertige Slicing-Software innerhalb der KI-Systemarchitektur</div>
+          <div>- Perfekt abgestimmte Resin-Parameter und Druckprofile für eine Erfolgsquote von 99 %</div>
+          <div>- Einfache Übermittlung der 3D-Datei an die KI zur direkten Ausführung des Drucks</div>
+        </div>
         <div className="ai-image-wrap">
           <Image
             src="/immersives-ui.png"
@@ -315,20 +327,53 @@ export default function Home() {
       <section id="option1" className="content-section">
 <h2 className="section-title"><span className="section-title-main">Möglichkeit 1</span><span className="section-title-sub">Vollautomatisiert mit einem Roboterarm</span></h2>
         <ul className="metrics-list">
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>💰</span>
-            <span className="metric-label">Entwicklungskosten</span>
-            <span className="metric-value">4 Mio. €</span>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>💰</span>
+              <span className="metric-label">Entwicklungskosten</span>{' '}
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsCost1Open((open) => !open)}
+              >
+                Bis zu 4 Mio. €
+                <span className={`metric-toggle-arrow ${isCost1Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isCost1Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- 60 % Gehälter und externe Dienstleistungen</div>
+                <div className="metric-breakdown-line">- 15 % Werkzeuge und Ausrüstung (z. B. Oszilloskop)</div>
+                <div className="metric-breakdown-line">- 25 % Prototypenentwicklung</div>
+              </div>
+            )}
           </li>
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>⏱️</span>
-            <span className="metric-label">Entwicklungszeit</span>
-            <span className="metric-value">2–3 Jahre</span>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>⏱️</span>
+              <span className="metric-label">Entwicklungszeit</span>
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsTime1Open((open) => !open)}
+              >
+                Bis zu 3 Jahre
+                <span className={`metric-toggle-arrow ${isTime1Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isTime1Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 6 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 6 Monate</div>
+                <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
+              </div>
+            )}
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>🏭</span>
             <span className="metric-label">Herstellungskosten</span>
-            <span className="metric-value">50.000 €</span>
+            <span className="metric-value">Bis zu 50.000 €</span>
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>🏷️</span>
@@ -337,7 +382,7 @@ export default function Home() {
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>📈</span>
-            <span className="metric-label">Amortisationszeit (ROI)</span>
+            <span className="metric-label">Kunden-ROI</span>
             <span className="pill pill--green">2 Jahre</span>
           </li>
         </ul>
@@ -356,20 +401,53 @@ export default function Home() {
       <section id="option2" className="content-section">
 <h2 className="section-title"><span className="section-title-main">Möglichkeit 2</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit speziellem 4K-Projektor</span></h2>
         <ul className="metrics-list">
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>💰</span>
-            <span className="metric-label">Entwicklungskosten</span>
-            <span className="metric-value">2 Mio. €</span>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>💰</span>
+              <span className="metric-label">Entwicklungskosten</span>{' '}
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsCost2Open((open) => !open)}
+              >
+                Bis zu 2 Mio. €
+                <span className={`metric-toggle-arrow ${isCost2Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isCost2Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- 60 % Gehälter und externe Dienstleistungen</div>
+                <div className="metric-breakdown-line">- 15 % Werkzeuge und Ausrüstung (z. B. Oszilloskop)</div>
+                <div className="metric-breakdown-line">- 25 % Prototypenentwicklung</div>
+              </div>
+            )}
           </li>
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>⏱️</span>
-            <span className="metric-label">Entwicklungszeit</span>
-            <span className="metric-value">1–2 Jahre</span>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>⏱️</span>
+              <span className="metric-label">Entwicklungszeit</span>
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsTime2Open((open) => !open)}
+              >
+                Bis zu 2 Jahre
+                <span className={`metric-toggle-arrow ${isTime2Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isTime2Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 6 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 6 Monate</div>
+                <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
+              </div>
+            )}
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>🏭</span>
             <span className="metric-label">Herstellungskosten</span>
-            <span className="metric-value">8.000 €</span>
+            <span className="metric-value">Bis zu 8.000 €</span>
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>🏷️</span>
@@ -378,7 +456,7 @@ export default function Home() {
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>📈</span>
-            <span className="metric-label">Amortisationszeit (ROI)</span>
+            <span className="metric-label">Kunden-ROI</span>
             <span className="pill pill--green">2 Jahre</span>
           </li>
         </ul>
@@ -397,20 +475,53 @@ export default function Home() {
       <section id="option3" className="content-section">
 <h2 className="section-title"><span className="section-title-main">Möglichkeit 3</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit LCD</span></h2>
         <ul className="metrics-list">
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>💰</span>
-            <span className="metric-label">Entwicklungskosten</span>
-            <span className="metric-value">1,5 Mio. €</span>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>💰</span>
+              <span className="metric-label">Entwicklungskosten</span>{' '}
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsCost3Open((open) => !open)}
+              >
+                Bis zu 1,5 Mio. €
+                <span className={`metric-toggle-arrow ${isCost3Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isCost3Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- 60 % Gehälter und externe Dienstleistungen</div>
+                <div className="metric-breakdown-line">- 15 % Werkzeuge und Ausrüstung (z. B. Oszilloskop)</div>
+                <div className="metric-breakdown-line">- 25 % Prototypenentwicklung</div>
+              </div>
+            )}
           </li>
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>⏱️</span>
-            <span className="metric-label">Entwicklungszeit</span>
-            <span className="metric-value">1–2 Jahre</span>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>⏱️</span>
+              <span className="metric-label">Entwicklungszeit</span>
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsTime3Open((open) => !open)}
+              >
+                Bis zu 2 Jahre
+                <span className={`metric-toggle-arrow ${isTime3Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isTime3Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 6 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 6 Monate</div>
+                <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
+              </div>
+            )}
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>🏭</span>
             <span className="metric-label">Herstellungskosten</span>
-            <span className="metric-value">6.000 €</span>
+            <span className="metric-value">Bis zu 6.000 €</span>
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>🏷️</span>
@@ -419,7 +530,7 @@ export default function Home() {
           </li>
           <li className="metric-item">
             <span className="metric-icon" aria-hidden>📈</span>
-            <span className="metric-label">Amortisationszeit (ROI)</span>
+            <span className="metric-label">Kunden-ROI</span>
             <span className="pill pill--green">2 Jahre</span>
           </li>
         </ul>
