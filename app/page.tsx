@@ -364,8 +364,8 @@ export default function Home() {
             {isTime1Open && (
               <div className="metric-breakdown">
                 <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
-                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 6 Monate</div>
-                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 12 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 12 Monate</div>
                 <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
               </div>
             )}
