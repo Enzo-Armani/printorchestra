@@ -473,7 +473,7 @@ export default function Home() {
         </div>
       </section>
       <section id="option3" className="content-section">
-<h2 className="section-title"><span className="section-title-main">Möglichkeit 3</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit LCD</span></h2>
+        <h2 className="section-title"><span className="section-title-main">Möglichkeit 3</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit LCD</span></h2>
         <ul className="metrics-list">
           <li className="metric-item metric-item--with-breakdown">
             <div className="metric-row-header">
@@ -540,6 +540,22 @@ export default function Home() {
             alt="KI-Betriebssystem-Drucker mit LCD"
             width={1600}
             height={1200}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      <section className="ai-section">
+        <h2 className="ai-heading">App-Steuerung</h2>
+        <p className="ai-paragraph">Im Folgenden sehen Sie eine Demonstration unserer Windows-Test-App, die einen Desk MC-5 Drucker steuert. Wir werden fortschrittliche Steuerungs-Apps für iOS, Android, Windows und Mac entwickeln.</p>
+        <div className="ai-image-wrap">
+          <Image
+            src="/app-control.png"
+            alt="App-Steuerung für Desk MC-5 Drucker"
+            width={1600}
+            height={900}
             className="ai-image"
             unoptimized={UNOPTIMIZED}
             sizes="(min-width: 1024px) 80vw, 95vw"
