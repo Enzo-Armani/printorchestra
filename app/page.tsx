@@ -308,7 +308,7 @@ export default function Home() {
 
       {/* German Quality Section */}
       <section className="ai-section">
-        <h2 className="ai-heading">Deutsche Qualität – rundum</h2>
+        <h2 className="ai-heading">Zuverlässigkeit, die überzeugt.</h2>
         <p className="ai-paragraph">Gleichmäßige, verbesserte aerodynamische Turbulator-Beheizung und Temperaturregelung von mehreren Standorten aus. Intelligente Bauplattform mit mehreren Echtzeitsensoren und Nivellieraktuatoren - Aktive, präzise Steuerung an allen vier Ecken für konstant perfekte Druckergebnisse: Kein manuelles Leveling mit A4-Papier mehr und kein Raten, ob der Abstand passt.</p>
         <div className="ai-image-wrap">
           <Image
