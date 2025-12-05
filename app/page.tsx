@@ -404,21 +404,32 @@ export default function Home() {
             {isRoi1Open && (
               <div className="metric-breakdown">
                 <div className="roi-summary-block">
-                  <p><strong>Vollautomatisierung:</strong> Da der Roboterarm den Techniker vollständig ersetzt, spart das Labor ca. <strong>60.000 € pro Jahr</strong> an Personalkosten.</p>
-                  <p>Allein durch die eingesparten Gehälter amortisiert sich die Investition in 2 Jahren. Hinzu kommt der Gewinn aus der Produktion.</p>
+                  <p><strong>Vollautomatisierung:</strong> Der Roboterarm ersetzt den Techniker komplett. Ideal für Volumengeschäfte.</p>
                 </div>
+                
+                {/* Scenario A: Dental Models */}
+                <div className="roi-block-header">Szenario A: Zahnmodelle (Masse)</div>
                 <div className="roi-data-table">
                   <div className="roi-data-row">
                     <span className="roi-data-label">Eingespartes Gehalt (2 Jahre):</span>
                     <span className="roi-data-value">120.000 €</span>
                   </div>
                   <div className="roi-data-row">
-                    <span className="roi-data-label">Produktionsgewinn (Modelle):</span>
-                    <span className="roi-data-value">+ Variable</span>
+                    <span className="roi-data-label roi-data-total">Amortisation:</span>
+                    <span className="roi-data-value roi-data-total">&lt; 2 Jahre</span>
+                  </div>
+                </div>
+
+                {/* Scenario B: Splints */}
+                <div className="roi-block-header">Szenario B: Schienen/Trays (Marge)</div>
+                <div className="roi-data-table">
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Jahresgewinn (Netto):</span>
+                    <span className="roi-data-value">58.040 €</span>
                   </div>
                   <div className="roi-data-row">
                     <span className="roi-data-label roi-data-total">Amortisation:</span>
-                    <span className="roi-data-value roi-data-total">&lt; 2 Jahre</span>
+                    <span className="roi-data-value roi-data-total">2,1 Jahre</span>
                   </div>
                 </div>
               </div>
@@ -505,33 +516,43 @@ export default function Home() {
                 className="pill pill--green"
                 onClick={() => setIsRoi2Open((open) => !open)}
               >
-                0,5 – 1,6 Jahre
+                Ab 4 Monaten
                 <span className={`metric-toggle-arrow ${isRoi2Open ? 'is-open' : ''}`}> ▾</span>
               </button>
             </div>
             {isRoi2Open && (
               <div className="metric-breakdown">
                 <div className="roi-summary-block">
-                  <p><strong>Worst-Case (Safe):</strong> Selbst bei 70% Leerlauf (nur 12 Modelle/Tag) amortisiert sich der Drucker in 1,6 Jahren.</p>
-                  <p><strong>Standard:</strong> Im Regelbetrieb (36 Modelle/Tag) ROI in unter 6 Monaten.</p>
-                  <p style={{fontSize: '0.9rem', marginTop: '0.5rem', opacity: 0.8}}>99% Zuverlässigkeit bedeutet keine Kosten für fehlgeschlagene Drucke (vs. 15% Ausfall bei Billigdruckern).</p>
+                  <p><strong>Zuverlässigkeit (99%):</strong> Spart im Vergleich zu Billigdruckern ca. 2.500€ pro Jahr an Fehlerkosten.</p>
                 </div>
+
+                {/* Scenario A: Dental Models */}
+                <div className="roi-block-header">Szenario A: Zahnmodelle (Masse)</div>
                 <div className="roi-data-table">
                   <div className="roi-data-row">
-                    <span className="roi-data-label">Tagesproduktion (Safe):</span>
-                    <span className="roi-data-value">12 Modelle</span>
-                  </div>
-                   <div className="roi-data-row">
-                    <span className="roi-data-label">Tagesgewinn Netto:</span>
-                    <span className="roi-data-value">≈ 65,00 €</span>
+                    <span className="roi-data-label">Worst-Case (12 Modelle/Tag):</span>
+                    <span className="roi-data-value">1,6 Jahre</span>
                   </div>
                   <div className="roi-data-row">
-                    <span className="roi-data-label">Jahresgewinn (192 Tage):</span>
-                    <span className="roi-data-value">12.480 €</span>
+                    <span className="roi-data-label roi-data-total">Standard (36 Modelle/Tag):</span>
+                    <span className="roi-data-value roi-data-total">0,5 Jahre</span>
+                  </div>
+                </div>
+
+                {/* Scenario B: Splints */}
+                <div className="roi-block-header">Szenario B: Schienen/Trays (Marge)</div>
+                <div className="roi-data-table">
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Jahresgewinn (Netto):</span>
+                    <span className="roi-data-value">54.476 €</span>
+                  </div>
+                   <div className="roi-data-row">
+                    <span className="roi-data-label">Volumen:</span>
+                    <span className="roi-data-value">Nur ~5 Teile / Woche</span>
                   </div>
                   <div className="roi-data-row">
                     <span className="roi-data-label roi-data-total">Amortisation:</span>
-                    <span className="roi-data-value roi-data-total">1,6 Jahre</span>
+                    <span className="roi-data-value roi-data-total">4,3 Monate</span>
                   </div>
                 </div>
               </div>
@@ -618,32 +639,39 @@ export default function Home() {
                 className="pill pill--green"
                 onClick={() => setIsRoi3Open((open) => !open)}
               >
-                0,4 – 1,2 Jahre
+                Ab 3 Monaten
                 <span className={`metric-toggle-arrow ${isRoi3Open ? 'is-open' : ''}`}> ▾</span>
               </button>
             </div>
             {isRoi3Open && (
               <div className="metric-breakdown">
                 <div className="roi-summary-block">
-                   <p><strong>Worst-Case (Safe):</strong> Selbst bei 70% Leerlauf (nur 12 Modelle/Tag) amortisiert sich der Drucker in 1,2 Jahren.</p>
-                  <p><strong>Standard:</strong> Im Regelbetrieb (36 Modelle/Tag) ROI in ca. 5 Monaten.</p>
+                   <p><strong>Niedrige Einstiegshürde:</strong> Maximale Rentabilität bei Spezialanwendungen.</p>
                 </div>
+
+                {/* Scenario A: Dental Models */}
+                <div className="roi-block-header">Szenario A: Zahnmodelle (Masse)</div>
                 <div className="roi-data-table">
                   <div className="roi-data-row">
-                    <span className="roi-data-label">Tagesproduktion (Safe):</span>
-                    <span className="roi-data-value">12 Modelle</span>
-                  </div>
-                   <div className="roi-data-row">
-                    <span className="roi-data-label">Tagesgewinn Netto:</span>
-                    <span className="roi-data-value">≈ 65,00 €</span>
+                    <span className="roi-data-label">Worst-Case (12 Modelle/Tag):</span>
+                    <span className="roi-data-value">1,2 Jahre</span>
                   </div>
                   <div className="roi-data-row">
-                    <span className="roi-data-label">Jahresgewinn (192 Tage):</span>
-                    <span className="roi-data-value">12.480 €</span>
+                    <span className="roi-data-label roi-data-total">Standard (36 Modelle/Tag):</span>
+                    <span className="roi-data-value roi-data-total">0,4 Jahre</span>
+                  </div>
+                </div>
+
+                {/* Scenario B: Splints */}
+                <div className="roi-block-header">Szenario B: Schienen/Trays (Marge)</div>
+                <div className="roi-data-table">
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Jahresgewinn (Netto):</span>
+                    <span className="roi-data-value">54.476 €</span>
                   </div>
                   <div className="roi-data-row">
                     <span className="roi-data-label roi-data-total">Amortisation:</span>
-                    <span className="roi-data-value roi-data-total">1,2 Jahre</span>
+                    <span className="roi-data-value roi-data-total">3,2 Monate</span>
                   </div>
                 </div>
               </div>

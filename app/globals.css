@@ -900,7 +900,7 @@ body {
 
 .metric-toggle-arrow {
   font-size: 1.5em; /* ~50% larger than text */
-  color: #ffff00; /* Updated to yellow for visibility */
+  color: #ffff00; /* Yellow for visibility on green buttons */
   display: inline-block;
   transition: transform 0.2s ease;
 }
@@ -947,12 +947,24 @@ body {
   font-weight: 700;
 }
 
+.roi-block-header {
+  font-weight: 700;
+  color: #fff;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.25rem;
+  display: inline-block;
+}
+
 .roi-data-table {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 0.5rem 2rem;
   width: 100%;
   font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
 .roi-data-row {
