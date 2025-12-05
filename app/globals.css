@@ -900,7 +900,7 @@ body {
 
 .metric-toggle-arrow {
   font-size: 1.5em; /* ~50% larger than text */
-  color: #10b981; /* match green of Kunden-ROI pill */
+  color: #ffff00; /* Updated to yellow for visibility */
   display: inline-block;
   transition: transform 0.2s ease;
 }
