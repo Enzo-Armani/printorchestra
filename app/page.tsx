@@ -31,12 +31,19 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [inGallery, setInGallery] = useState(false);
+  
+  // Cost/Time/ROI Toggles
   const [isCost1Open, setIsCost1Open] = useState(false);
   const [isCost2Open, setIsCost2Open] = useState(false);
   const [isCost3Open, setIsCost3Open] = useState(false);
   const [isTime1Open, setIsTime1Open] = useState(false);
   const [isTime2Open, setIsTime2Open] = useState(false);
   const [isTime3Open, setIsTime3Open] = useState(false);
+  
+  // ROI Calculation Toggles
+  const [isRoi1Open, setIsRoi1Open] = useState(false);
+  const [isRoi2Open, setIsRoi2Open] = useState(false);
+  const [isRoi3Open, setIsRoi3Open] = useState(false);
 
   useEffect(() => {
     // Set target date to November 10th, 2025 at 8:00 AM
@@ -323,9 +330,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sections */}
+      {/* Option 1: Robot Arm (Full Auto) */}
       <section id="option1" className="content-section">
-<h2 className="section-title"><span className="section-title-main">Möglichkeit 1</span><span className="section-title-sub">Vollautomatisiert mit einem Roboterarm</span></h2>
+        <h2 className="section-title"><span className="section-title-main">Möglichkeit 1</span><span className="section-title-sub">Vollautomatisiert mit einem Roboterarm</span></h2>
         <ul className="metrics-list">
           <li className="metric-item metric-item--with-breakdown">
             <div className="metric-row-header">
@@ -380,10 +387,42 @@ export default function Home() {
             <span className="metric-label">Verkaufspreis (UVP)</span>
             <span className="pill pill--purple">120.000 €</span>
           </li>
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>📈</span>
-            <span className="metric-label">Kunden-ROI</span>
-            <span className="pill pill--green">2 Jahre</span>
+          {/* New Interactive ROI Section for Option 1 */}
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>📈</span>
+              <span className="metric-label">Kunden-ROI</span>
+              <button
+                type="button"
+                className="pill pill--green"
+                onClick={() => setIsRoi1Open((open) => !open)}
+              >
+                &lt; 2 Jahre
+                <span className={`metric-toggle-arrow ${isRoi1Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isRoi1Open && (
+              <div className="metric-breakdown">
+                <div className="roi-summary-block">
+                  <p><strong>Vollautomatisierung:</strong> Da der Roboterarm den Techniker vollständig ersetzt, spart das Labor ca. <strong>60.000 € pro Jahr</strong> an Personalkosten.</p>
+                  <p>Allein durch die eingesparten Gehälter amortisiert sich die Investition in 2 Jahren. Hinzu kommt der Gewinn aus der Produktion.</p>
+                </div>
+                <div className="roi-data-table">
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Eingespartes Gehalt (2 Jahre):</span>
+                    <span className="roi-data-value">120.000 €</span>
+                  </div>
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Produktionsgewinn (Modelle):</span>
+                    <span className="roi-data-value">+ Variable</span>
+                  </div>
+                  <div className="roi-data-row">
+                    <span className="roi-data-label roi-data-total">Amortisation:</span>
+                    <span className="roi-data-value roi-data-total">&lt; 2 Jahre</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </li>
         </ul>
         <div className="ai-image-wrap" style={{ marginTop: '1.5rem' }}>
@@ -398,8 +437,10 @@ export default function Home() {
           />
         </div>
       </section>
+
+      {/* Option 2: 20k Machine (High Tech) */}
       <section id="option2" className="content-section">
-<h2 className="section-title"><span className="section-title-main">Möglichkeit 2</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit speziellem 4K-Projektor</span></h2>
+        <h2 className="section-title"><span className="section-title-main">Möglichkeit 2</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit speziellem 4K-Projektor</span></h2>
         <ul className="metrics-list">
           <li className="metric-item metric-item--with-breakdown">
             <div className="metric-row-header">
@@ -454,10 +495,47 @@ export default function Home() {
             <span className="metric-label">Verkaufspreis (UVP)</span>
             <span className="pill pill--purple">20.000 €</span>
           </li>
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>📈</span>
-            <span className="metric-label">Kunden-ROI</span>
-            <span className="pill pill--green">2 Jahre</span>
+          {/* New Interactive ROI Section for Option 2 */}
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>📈</span>
+              <span className="metric-label">Kunden-ROI</span>
+              <button
+                type="button"
+                className="pill pill--green"
+                onClick={() => setIsRoi2Open((open) => !open)}
+              >
+                0,5 – 1,6 Jahre
+                <span className={`metric-toggle-arrow ${isRoi2Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isRoi2Open && (
+              <div className="metric-breakdown">
+                <div className="roi-summary-block">
+                  <p><strong>Worst-Case (Safe):</strong> Selbst bei 70% Leerlauf (nur 12 Modelle/Tag) amortisiert sich der Drucker in 1,6 Jahren.</p>
+                  <p><strong>Standard:</strong> Im Regelbetrieb (36 Modelle/Tag) ROI in unter 6 Monaten.</p>
+                  <p style={{fontSize: '0.9rem', marginTop: '0.5rem', opacity: 0.8}}>99% Zuverlässigkeit bedeutet keine Kosten für fehlgeschlagene Drucke (vs. 15% Ausfall bei Billigdruckern).</p>
+                </div>
+                <div className="roi-data-table">
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Tagesproduktion (Safe):</span>
+                    <span className="roi-data-value">12 Modelle</span>
+                  </div>
+                   <div className="roi-data-row">
+                    <span className="roi-data-label">Tagesgewinn Netto:</span>
+                    <span className="roi-data-value">≈ 65,00 €</span>
+                  </div>
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Jahresgewinn (192 Tage):</span>
+                    <span className="roi-data-value">12.480 €</span>
+                  </div>
+                  <div className="roi-data-row">
+                    <span className="roi-data-label roi-data-total">Amortisation:</span>
+                    <span className="roi-data-value roi-data-total">1,6 Jahre</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </li>
         </ul>
         <div className="ai-image-wrap" style={{ marginTop: '1.5rem' }}>
@@ -472,6 +550,8 @@ export default function Home() {
           />
         </div>
       </section>
+
+      {/* Option 3: 15k Machine (LCD) */}
       <section id="option3" className="content-section">
         <h2 className="section-title"><span className="section-title-main">Möglichkeit 3</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit LCD</span></h2>
         <ul className="metrics-list">
@@ -528,10 +608,46 @@ export default function Home() {
             <span className="metric-label">Verkaufspreis (UVP)</span>
             <span className="pill pill--purple">15.000 €</span>
           </li>
-          <li className="metric-item">
-            <span className="metric-icon" aria-hidden>📈</span>
-            <span className="metric-label">Kunden-ROI</span>
-            <span className="pill pill--green">2 Jahre</span>
+          {/* New Interactive ROI Section for Option 3 */}
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>📈</span>
+              <span className="metric-label">Kunden-ROI</span>
+              <button
+                type="button"
+                className="pill pill--green"
+                onClick={() => setIsRoi3Open((open) => !open)}
+              >
+                0,4 – 1,2 Jahre
+                <span className={`metric-toggle-arrow ${isRoi3Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isRoi3Open && (
+              <div className="metric-breakdown">
+                <div className="roi-summary-block">
+                   <p><strong>Worst-Case (Safe):</strong> Selbst bei 70% Leerlauf (nur 12 Modelle/Tag) amortisiert sich der Drucker in 1,2 Jahren.</p>
+                  <p><strong>Standard:</strong> Im Regelbetrieb (36 Modelle/Tag) ROI in ca. 5 Monaten.</p>
+                </div>
+                <div className="roi-data-table">
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Tagesproduktion (Safe):</span>
+                    <span className="roi-data-value">12 Modelle</span>
+                  </div>
+                   <div className="roi-data-row">
+                    <span className="roi-data-label">Tagesgewinn Netto:</span>
+                    <span className="roi-data-value">≈ 65,00 €</span>
+                  </div>
+                  <div className="roi-data-row">
+                    <span className="roi-data-label">Jahresgewinn (192 Tage):</span>
+                    <span className="roi-data-value">12.480 €</span>
+                  </div>
+                  <div className="roi-data-row">
+                    <span className="roi-data-label roi-data-total">Amortisation:</span>
+                    <span className="roi-data-value roi-data-total">1,2 Jahre</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </li>
         </ul>
         <div className="ai-image-wrap" style={{ marginTop: '1.5rem' }}>

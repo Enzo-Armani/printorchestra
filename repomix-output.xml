@@ -1,0 +1,2620 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+app/
+  api/
+    login/
+      route.ts
+  login/
+    page.tsx
+  favicon.ico
+  globals.css
+  layout.tsx
+  page.tsx
+components/
+  Carousel.tsx
+public/
+  1.png
+  10.png
+  11.png
+  12.png
+  13.png
+  14.png
+  15.png
+  16.png
+  17.png
+  18.png
+  19.png
+  2.png
+  20.png
+  21.png
+  22.png
+  23.png
+  24.png
+  25.png
+  26.png
+  27.png
+  28.png
+  29.png
+  3.png
+  30.png
+  31.png
+  32.png
+  33.png
+  34.png
+  35.png
+  36.png
+  37.png
+  38.png
+  39.png
+  4.png
+  40.png
+  41.png
+  42.png
+  43.png
+  44.png
+  45.png
+  46.png
+  47.png
+  48.png
+  49.png
+  5.png
+  6.png
+  7.png
+  8.png
+  9.png
+  app-control.png
+  deutsche-qualitaet.png
+  file.svg
+  Gallery-11.png
+  globe.svg
+  hero-right.png
+  immersives-ui.png
+  ki-betriebssystem.png
+  moeglichkeit-1.png
+  moeglichkeit-2.png
+  moeglichkeit-3.png
+  next.svg
+  uv-leistung.png
+  vercel.svg
+  window.svg
+.gitignore
+eslint.config.mjs
+middleware.ts
+next.config.ts
+package.json
+postcss.config.mjs
+README.md
+tsconfig.json
+WARP.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="app/login/page.tsx">
+'use client';
+
+import { useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function LoginPage() {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setError('');
+
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      if (res.ok) {
+        // Successful login, redirect to the homepage
+        router.push('/');
+        router.refresh(); // Refresh to ensure server components re-render
+      } else {
+        setError('Invalid password. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
+          Access Required
+        </h1>
+        <p className="text-center text-gray-600 dark:text-gray-300">
+          Please enter the password to view this site.
+        </p>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="block w-full px-3 py-2 mt-1 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            />
+          </div>
+
+          {error && (
+            <p className="text-sm text-center text-red-600 dark:text-red-400">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Unlock
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="public/file.svg">
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+</file>
+
+<file path="public/globe.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+</file>
+
+<file path="public/next.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+</file>
+
+<file path="public/vercel.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+</file>
+
+<file path="public/window.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+</file>
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="eslint.config.mjs">
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+</file>
+
+<file path="middleware.ts">
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { jwtVerify } from 'jose';
+
+// Helper function to get the JWT secret
+function getJwtSecret(): Uint8Array {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET environment variable is not set');
+  }
+  return new TextEncoder().encode(secret);
+}
+
+// Helper function to verify the token
+async function verifyToken(token: string | undefined): Promise<boolean> {
+  if (!token) {
+    return false;
+  }
+  try {
+    const secret = getJwtSecret();
+    await jwtVerify(token, secret);
+    return true;
+  } catch (error) {
+    console.warn('JWT verification failed:', error);
+    return false;
+  }
+}
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const token = request.cookies.get('token')?.value;
+
+  const isLoggedIn = await verifyToken(token);
+
+  // If the user is on the login page
+  if (pathname.startsWith('/login')) {
+    // If they are already logged in, redirect them to the homepage
+    if (isLoggedIn) {
+      return NextResponse.redirect(new URL('/', request.url));
+    }
+    // Otherwise, let them see the login page
+    return NextResponse.next();
+  }
+
+  // If the user is not logged in and not on the login page
+  if (!isLoggedIn) {
+    // Redirect them to the login page
+    const loginUrl = new URL('/login', request.url);
+    loginUrl.searchParams.set('from', pathname); // You can use this to redirect back
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // If the user is logged in, let them proceed
+  return NextResponse.next();
+}
+
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+};
+</file>
+
+<file path="postcss.config.mjs">
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="app/api/login/route.ts">
+import { SignJWT } from 'jose';
+import { NextResponse } from 'next/server';
+
+export async function POST(request: Request) {
+  const body = await request.json();
+  const { password } = body;
+
+  const { SITE_PASSWORD, JWT_SECRET } = process.env;
+
+  // 1. Check if the password is correct
+  if (password !== SITE_PASSWORD) {
+    // Return a 401 Unauthorized response
+    return new Response(JSON.stringify({ error: 'Invalid password' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  // 2. Get the secret for signing the token
+  if (!JWT_SECRET) {
+    console.error('JWT_SECRET environment variable is not set');
+    return new Response(JSON.stringify({ error: 'Server configuration error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  const secret = new TextEncoder().encode(JWT_SECRET);
+
+  try {
+    // 3. Create a JWT token
+    const token = await new SignJWT({})
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('1d') // Token expires in 1 day
+      .sign(secret);
+
+    // 4. Create the success response
+    const response = NextResponse.json({ success: true });
+
+    // 5. Set the token in a secure, httpOnly cookie on the response
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24, // 1 day in seconds
+    });
+
+    // 6. Return the response with the cookie
+    return response;
+
+  } catch (error) {
+    console.error('Error creating JWT:', error);
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+</file>
+
+<file path="next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+};
+
+export default nextConfig;
+</file>
+
+<file path="package.json">
+{
+  "name": "printorchestra",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "jose": "^6.1.0",
+    "next": "16.0.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="README.md">
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="WARP.md">
+# WARP.md
+
+This file provides guidance to WARP (warp.dev) when working with code in this repository.
+
+Project: printorchestra – password-gated marketing site (Next.js App Router + TypeScript)
+
+Commands
+- Install dependencies
+  - npm install
+- Develop (Next dev server on http://localhost:3000)
+  - npm run dev
+- Build
+  - npm run build
+- Start (after build)
+  - npm start
+- Lint (ESLint 9 + eslint-config-next)
+  - npm run lint
+- Tests
+  - No test framework or npm test script is configured in this repo; there is currently no way to run a single test.
+
+Environment and auth (required for local dev)
+- Required env vars (create a .env.local in the project root):
+  - SITE_PASSWORD=<your password>
+  - JWT_SECRET=<a long random string used to sign/verify JWTs>
+- Login flow
+  - app/login/page.tsx is a client component that posts to /api/login with { password } and, on success, redirects to / and refreshes the router.
+  - app/api/login/route.ts compares password to SITE_PASSWORD; on mismatch it returns a 401 JSON error, on success it signs an empty JWT payload using jose and JWT_SECRET and sets it as an httpOnly cookie named token with 1-day expiry.
+  - middleware.ts reads the token cookie and verifies it with jwtVerify and JWT_SECRET, redirecting unauthenticated users to /login (with ?from=<path>) and redirecting logged-in users away from /login back to /.
+  - JWT_SECRET is required at runtime; getJwtSecret() in middleware.ts throws if it is missing, which will break all non-excluded routes.
+
+High-level architecture
+- Next.js App Router (app/)
+  - app/layout.tsx sets up Geist and Geist_Mono fonts as CSS variables and wraps all pages in the root HTML/body, importing app/globals.css for styling.
+  - app/page.tsx is the main password-protected landing page implemented as a single client component that:
+    - Manages countdown state to a hard-coded launch date, mouse-position-driven spotlight effects, scroll-based header behavior (sticky header that hides over the gallery), and active section highlighting for three "Möglichkeit" sections.
+    - Composes several visually distinct sections (hero, AI OS and feature sections, three cost/time/ROI option sections, gallery heading, and footer) with their behavior driven largely by CSS in app/globals.css (e.g., an IntersectionObserver adds the revealed class to .feature-card elements).
+    - Uses a separate Carousel client component imported via the @/* path alias (from components/Carousel.tsx) to render a large gallery of numbered PNG images.
+  - app/login/page.tsx renders a minimal password form using Tailwind utility classes and client-side state for inline error handling, calling /api/login and then router.push('/') + router.refresh() on success.
+  - app/api/login/route.ts is a simple credentials check: it validates the request password against SITE_PASSWORD, signs a JWT with jose (HS256, 1-day expiry) using JWT_SECRET, and writes it into an httpOnly, path=/ cookie named token.
+- Middleware-based protection (middleware.ts)
+  - All routes except /api/*, Next static/image assets, and /favicon.ico are passed through middleware that reads token from cookies, verifies it with jwtVerify and JWT_SECRET, and:
+    - Redirects unauthenticated users to /login, preserving the original pathname in a from query parameter.
+    - Redirects logged-in users who hit /login back to /.
+- Styling
+  - Tailwind CSS v4 is enabled via the @tailwindcss/postcss plugin (postcss.config.mjs) and a single global stylesheet app/globals.css that:
+    - Imports the Tailwind v4 entrypoint (@import "tailwindcss";) and defines an inline @theme using Geist font variables.
+    - Implements nearly all layout and visual behavior (particle background, spotlight, glitch typography, hero split, animated reveal cards, per-section gradients, metrics layout, carousel layout, responsive tweaks) via custom CSS classes.
+- Components and data flow
+  - components/Carousel.tsx is a client component responsible for the gallery carousel; it:
+    - Accepts an images array and manages the current index in state, with keyboard navigation and preloading of initial and adjacent images.
+    - Uses next/image, but conditionally falls back to unoptimized paths in non-production environments; in production it manually constructs _next/image URLs to warm the image optimization cache.
+  - The rest of the UI is inlined into app/page.tsx; there is no global state management library and no backend database or API beyond the single /api/login route.
+
+Tooling
+- TypeScript
+  - Strict, noEmit configuration with moduleResolution: "bundler" and a path alias @/* -> project root (tsconfig.json). This alias is used for components (e.g., "@/components/Carousel").
+- ESLint
+  - ESLint 9 with eslint-config-next/core-web-vitals and eslint-config-next/typescript (eslint.config.mjs).
+  - globalIgnores excludes .next/**, out/**, build/**, and next-env.d.ts.
+- Next.js config
+  - next.config.ts is minimal and only customizes image formats (AVIF and WebP) for next/image.
+- Tailwind / PostCSS
+  - Tailwind CSS v4 is wired through PostCSS only; there is intentionally no tailwind.config.* file, so styles are centralized in app/globals.css.
+
+Notes for agents
+- Before running npm run dev, ensure .env.local defines valid SITE_PASSWORD and JWT_SECRET; otherwise middleware.ts will throw at startup and all protected routes will fail.
+- When modifying or extending the UI, prefer to:
+  - Re-use the existing @/* path alias for new shared components alongside components/Carousel.tsx.
+  - Keep global layout/styling changes in app/globals.css, which already defines most structural classes used by app/page.tsx.
+- If you introduce a test runner (e.g., Jest, Vitest, or Playwright), add appropriate npm scripts (test, test:watch, etc.) and update this WARP.md with commands for running the full suite and a single test.
+</file>
+
+<file path="app/layout.tsx">
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
+</file>
+
+<file path="app/globals.css">
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* PrintOrchestra Styles */
+ .printorchestra-container {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 80px; /* offset for fixed navbar */
+  background: radial-gradient(ellipse at top, #0a0a0a 0%, #000 50%),
+              radial-gradient(ellipse at bottom, #001122 0%, #000 50%);
+}
+
+/* Particle Animation Background */
+.particle-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(100, 200, 255, 0.5);
+  border-radius: 50%;
+  animation: float 20s infinite linear;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+.particle:nth-child(2) { left: 30%; animation-delay: 5s; animation-duration: 20s; }
+.particle:nth-child(3) { left: 50%; animation-delay: 10s; animation-duration: 30s; }
+.particle:nth-child(4) { left: 70%; animation-delay: 15s; animation-duration: 22s; }
+.particle:nth-child(5) { left: 90%; animation-delay: 20s; animation-duration: 28s; }
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Veil Overlay */
+.veil-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    rgba(0,0,0,0.3) 0%, 
+    rgba(0,0,0,0) 50%, 
+    rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Spotlight Effect */
+.spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: screen;
+  transition: background 0.3s ease;
+}
+
+/* Header */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  padding: 0.75rem 0;
+  animation: fadeInDown 1s ease-out;
+  transition: background 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+}
+
+.header-top {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+}
+
+.header-scrolled {
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.logo-text {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #fff 0%, #888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-accent {
+  background: linear-gradient(135deg, #00ffff 0%, #0088ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-tagline {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: #666;
+  margin-top: 0.2rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+/* Navbar */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Hero-spanning navbar */
+.nav-hero {
+  width: 100%;
+  justify-content: space-between;
+  margin: 0 0 2rem 0;
+}
+
+/* Top navbar (aligned with logo) */
+.nav-top {
+  display: flex;
+  gap: 0.75rem;
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.nav-button {
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  background: none;
+  border: none;
+  color: #cfe7ff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-button:hover,
+.nav-button:focus {
+  color: #ffffff;
+}
+
+.nav-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff 0%, #0088ff 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.8;
+}
+
+.nav-button:hover::after,
+.nav-button:focus-visible::after,
+.nav-button-active::after {
+  transform: scaleX(1);
+}
+
+.nav-button-active {
+  color: #ffffff;
+}
+
+/* Hide header when gallery in view */
+.header-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hero Container */
+.hero-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+/* Split hero layout */
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.1fr) 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-left .glitch-container {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.hero-right {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 200, 255, 0.08);
+  filter: drop-shadow(0 0 25px rgba(0, 200, 255, 0.12));
+}
+
+/* Bottom light gradient in hero */
+.hero-bottom-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45vh;
+  background:
+    radial-gradient(120% 80% at 50% 100%, rgba(0, 200, 255, 0.20) 0%, rgba(0, 200, 255, 0.10) 35%, rgba(0,0,0,0) 70%),
+    linear-gradient(0deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glitch Text Effect */
+.glitch-container {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeIn 1.5s ease-out 0.5s backwards;
+}
+
+.glitch-subtext {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 500;
+  color: #9aa;
+  text-transform: none;
+  letter-spacing: 0.14em;
+  margin: 2rem 0 2rem;
+  opacity: 0.9;
+}
+
+.glitch-description {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  color: #9aa;
+  line-height: 1.7;
+  max-width: 48ch;
+  margin: 2rem 0 0;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.glitch-text {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  position: relative;
+  text-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+  background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glitch-text::before {
+  animation: glitch-1 0.5s infinite;
+  background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-2 0.5s infinite;
+  background: linear-gradient(135deg, #00ff00 0%, #ffff00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); }
+  40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+  60% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+  80% { clip-path: inset(80% 0 5% 0); transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(20% 0 40% 0); transform: translate(-2px, 1px); }
+  60% { clip-path: inset(40% 0 30% 0); transform: translate(1px, 2px); }
+  80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, -2px); }
+}
+
+/* Product Reveal Section */
+.product-reveal {
+  position: relative;
+  height: 400px;
+  margin: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 2s ease-out 1s backwards;
+}
+
+.product-veil {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+}
+
+.veil-fabric {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0.8) 90%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.9) 80%, transparent 100%);
+  filter: blur(20px);
+}
+
+.product-silhouette {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 300px;
+  background: 
+    radial-gradient(ellipse at center, rgba(0, 100, 200, 0.1) 0%, transparent 50%);
+  filter: blur(10px);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+.reveal-section {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reveal-section:hover .reveal-glow {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.reveal-section:hover .feature-hint {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+.arm-hint {
+  top: 20%;
+  right: 15%;
+}
+
+.printer-hint {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.system-hint {
+  bottom: 20%;
+  left: 20%;
+}
+
+.reveal-glow {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(0, 200, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 200, 255, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(0, 200, 255, 0.8); }
+}
+
+.feature-hint {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #00ffff;
+  opacity: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.feature-card {
+  background: linear-gradient(135deg, rgba(0,20,40,0.5) 0%, rgba(0,10,20,0.3) 100%);
+  border: 1px solid rgba(0, 200, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card.revealed {
+  animation: revealCard 0.6s ease-out forwards;
+}
+
+.feature-card[data-reveal="1"].revealed { animation-delay: 0.1s; }
+.feature-card[data-reveal="2"].revealed { animation-delay: 0.2s; }
+.feature-card[data-reveal="3"].revealed { animation-delay: 0.3s; }
+.feature-card[data-reveal="4"].revealed { animation-delay: 0.4s; }
+
+@keyframes revealCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feature-card:hover {
+  background: linear-gradient(135deg, rgba(0,30,60,0.6) 0%, rgba(0,15,30,0.4) 100%);
+  border-color: rgba(0, 200, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 200, 255, 0.2);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: #00ffff;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.feature-card p {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 300;
+}
+
+/* Countdown Section */
+.coming-soon {
+  text-align: center;
+  margin: 4rem 0;
+  animation: fadeIn 2s ease-out 1.5s backwards;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  color: #666;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.countdown-number {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(0, 200, 255, 0.5);
+  line-height: 1;
+}
+
+.countdown-unit {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #666;
+  margin-top: 0.5rem;
+  font-weight: 300;
+}
+
+.countdown-separator {
+  font-size: 2rem;
+  color: #333;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Notify Section */
+.notify-section {
+  max-width: 600px;
+  margin: 4rem auto;
+  text-align: center;
+  animation: fadeIn 2s ease-out 2s backwards;
+}
+
+.notify-text {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.notify-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.email-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  border-radius: 50px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.email-input::placeholder {
+  color: #666;
+}
+
+.email-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 200, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+}
+
+.notify-button {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #0088ff 0%, #00ffff 100%);
+  border: none;
+  border-radius: 50px;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notify-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 200, 255, 0.4);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.notify-button:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* Teaser Text */
+.teaser-text {
+  text-align: center;
+  margin: 4rem 0;
+  animation: fadeIn 2s ease-out 2.5s backwards;
+}
+
+.teaser-text p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0.5rem 0;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* AI OS Section */
+.ai-section {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 6rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+/* Tighter spacing for gallery heading */
+.gallery-heading.ai-section {
+  margin: 1rem auto 1rem; /* add space below heading */
+  padding-bottom: 0;
+}
+
+.ai-heading {
+  font-family: 'Avenir Next', 'AvenirNext', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(4rem, 10vw, 4.8rem); /* doubled */
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.ai-paragraph {
+  color: #888;
+  font-weight: 300;
+  font-size: clamp(1.125rem, 2.8vw, 1.4rem);
+  max-width: 900px;
+  margin: 0 auto 2rem;
+}
+
+.ai-image {
+  width: 100%;
+  height: auto;
+  max-width: 1100px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(0, 200, 255, 0.14), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Sections */
+.content-section {
+  position: relative;
+  z-index: 10;
+  max-width: 1100px;
+  margin: 6rem auto;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(0,20,40,0.5) 0%, rgba(0,10,20,0.3) 100%);
+  border: 1px solid rgba(0, 200, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0, 200, 255, 0.08);
+  scroll-margin-top: 120px;
+}
+
+/* White title for option sections */
+.content-section .section-title {
+  font-family: 'Avenir Next', 'AvenirNext', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(4rem, 10vw, 4.8rem); /* match AI heading sizing */
+  font-weight: 700; /* match AI heading weight */
+  margin-bottom: 0.75rem;
+  color: #fff;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+.section-title-main { font-weight: inherit; }
+.section-title-sub {
+  font-weight: 600;
+  font-size: 0.5em; /* half of main */
+  letter-spacing: 0.01em;
+  opacity: 0.95;
+  color: #c0c7d1;
+  display: block;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.content-section p {
+  color: #c0c7d1;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* Per-section color theming */
+#option1.content-section {
+  background: linear-gradient(90deg, rgba(88, 28, 135, 0.20) 0%, rgba(131, 24, 67, 0.20) 100%);
+  border-color: rgba(168, 85, 247, 0.30);
+}
+
+#option2.content-section {
+  background: linear-gradient(90deg, rgba(29, 78, 216, 0.20) 0%, rgba(88, 28, 135, 0.20) 100%);
+  border-color: rgba(59, 130, 246, 0.30);
+}
+
+#option3.content-section {
+  background: linear-gradient(90deg, rgba(190, 24, 93, 0.20) 0%, rgba(153, 27, 27, 0.20) 100%);
+  border-color: rgba(236, 72, 153, 0.30);
+}
+
+/* Metrics list (Option sections) */
+.metrics-list {
+  margin-top: 1.25rem;
+}
+
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 0.95rem 0;
+}
+
+.metric-item--with-breakdown {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.metric-row-header {
+  display: flex;
+  align-items: center;
+}
+
+.metric-row-header .metric-label {
+  margin-right: 1.75rem; /* same visual gap as other rows */
+}
+
+.metric-row-header .metric-value {
+  margin-left: auto; /* right-align value like other metric rows */
+}
+.metric-item:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-icon {
+  font-size: 2.4rem;
+  width: 3rem;
+  text-align: center;
+  filter: drop-shadow(0 3px 15px rgba(0, 200, 255, 0.25));
+}
+
+.metric-label {
+  color: #d5dbe6;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.metric-value {
+  margin-left: auto;
+  color: #eef3fb;
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+
+.metric-value-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  color: inherit;
+}
+
+.metric-toggle-arrow {
+  font-size: 1.5em; /* ~50% larger than text */
+  color: #10b981; /* match green of Kunden-ROI pill */
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.metric-toggle-arrow.is-open {
+  transform: rotate(180deg);
+}
+
+.metric-breakdown {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-right: calc(3rem + 1.75rem); /* indent from right side instead of left */
+  color: #d5dbe6;
+  font-weight: 400;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* move lines towards the right */
+  gap: 0.15rem;
+  text-align: right;
+}
+
+.metric-breakdown-line {
+  width: 100%;
+}
+
+.pill {
+  margin-left: auto;
+  padding: 0.55rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.5rem;
+  box-shadow: 0 12px 32px rgba(0, 200, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.pill--purple {
+  background: linear-gradient(90deg, #6a5cff 0%, #7c4dff 100%);
+}
+.pill--green {
+  background: linear-gradient(90deg, #1dd1a1 0%, #10b981 100%);
+}
+
+/* Footer */
+.main-footer {
+  position: relative;
+  z-index: 10;
+  padding: 1rem; /* reduced by 50% */
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  animation: fadeIn 2s ease-out 3s backwards;
+}
+
+.footer-content {
+  font-size: 0.8rem;
+  color: #444;
+  letter-spacing: 0.05em;
+}
+
+.separator {
+  margin: 0 1rem;
+  color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hero-right { order: 2; }
+  .hero-left { order: 1; }
+  .nav-align { padding: 0 1.5rem; }
+  .glitch-description { max-width: 44ch; }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .glitch-description { max-width: 46ch; }
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) {
+  .glitch-description { max-width: 48ch; }
+}
+
+@media (min-width: 1440px) {
+  .glitch-description { max-width: 50ch; }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 0.5rem 0;
+  }
+
+  .printorchestra-container {
+    padding-top: 96px; /* slightly larger offset on mobile */
+  }
+
+  .hero-bottom-glow {
+    height: 30vh;
+    background:
+      radial-gradient(140% 90% at 50% 100%, rgba(0, 200, 255, 0.18) 0%, rgba(0, 200, 255, 0.08) 35%, rgba(0,0,0,0) 70%),
+      linear-gradient(0deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%);
+  }
+
+  .header-inner {
+    padding: 0 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+
+  .nav-hero {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .nav-top {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .nav-button {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+  
+  .glitch-text {
+    font-size: clamp(1.5rem, 7.5vw, 3rem);
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-container {
+    gap: 0.5rem;
+  }
+  
+  .countdown-item {
+    min-width: 60px;
+  }
+  
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+  
+  .teaser-text p {
+    font-size: 1rem;
+  }
+}
+
+/* Carousel */
+.carousel-section {
+  position: relative;
+  z-index: 10;
+  width: min(96vw, 1400px);
+  max-width: 1400px;
+  margin: 1rem auto 2rem; /* padding-like space between heading and carousel */
+  padding: 0 1rem;
+}
+
+.carousel {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 200, 255, 0.12);
+  background: linear-gradient(135deg, rgba(0,20,40,0.5) 0%, rgba(0,10,20,0.3) 100%);
+  box-shadow: 0 20px 50px rgba(0, 200, 255, 0.08);
+  overflow: hidden;
+}
+
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  /* Taller and more immersive; avoids cropping using object-fit: contain */
+  height: clamp(560px, 85vh, 1100px);
+}
+
+.carousel-img {
+  object-fit: contain;
+  transition: opacity 300ms ease;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carousel-nav:hover {
+  background: rgba(0,0,0,0.55);
+  box-shadow: 0 6px 18px rgba(0, 200, 255, 0.25);
+}
+
+.carousel-nav--left { left: 12px; }
+.carousel-nav--right { right: 12px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+  padding: 10px 12px;
+  overflow-x: auto; /* allow many dots */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.carousel-dots::-webkit-scrollbar { height: 4px; }
+.carousel-dots::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 999px; }
+
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  flex: 0 0 auto; /* don’t shrink */
+}
+
+.carousel-dot.is-active {
+  background: #00d5ff;
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.8);
+}
+
+
+@media (max-width: 640px) {
+  .carousel-stage { height: clamp(360px, 70vh, 760px); }
+  .carousel-nav { width: 36px; height: 36px; font-size: 24px; }
+}
+</file>
+
+<file path="components/Carousel.tsx">
+"use client";
+
+import NextImage from "next/image";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+const UNOPTIMIZED = process.env.NODE_ENV !== "production";
+
+export type CarouselImage = {
+  src: string;
+  alt: string;
+};
+
+type Props = {
+  images: CarouselImage[];
+  initialIndex?: number;
+  id?: string;
+};
+
+export default function Carousel({ images, initialIndex = 0, id }: Props) {
+  const [index, setIndex] = useState(() =>
+    Math.min(Math.max(initialIndex, 0), Math.max(images.length - 1, 0))
+  );
+
+  const hasImages = images && images.length > 0;
+
+  const isProd = process.env.NODE_ENV === "production";
+  const QUALITY = 60;
+  const mkUrl = (path: string, width = 1000, quality = QUALITY) =>
+    isProd ? `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}` : path;
+
+  // Preload a small batch of initial images on mount to warm edge cache
+  useEffect(() => {
+    if (!hasImages) return;
+    const batch = Math.min(8, images.length);
+    for (let i = 0; i < batch; i++) {
+      const img = images[i];
+      if (!img) continue;
+      // Stagger requests to avoid burst
+      setTimeout(() => {
+        [1080].forEach((w) => {
+          if (typeof window === "undefined" || !window.Image) return;
+          const pre = new window.Image();
+          pre.decoding = "async";
+          if ("loading" in pre) {
+            (pre as HTMLImageElement).loading = "eager";
+          }
+          pre.src = mkUrl(img.src, w, QUALITY);
+        });
+      }, i * 150);
+    }
+  }, [hasImages, images]);
+
+  // Preload adjacent images in the background for instant navigation
+  useEffect(() => {
+    if (!hasImages) return;
+
+    const idxs: number[] = [];
+    const len = images.length;
+    // Preload next two and previous one
+    idxs.push((index + 1) % len);
+    idxs.push((index + 2) % len);
+    idxs.push((index - 1 + len) % len);
+
+    const unique = Array.from(new Set(idxs));
+    unique.forEach((i) => {
+      const img = images[i];
+      if (!img) return;
+      // Warm one or two common widths that match our sizes map
+      [1080, 1200].forEach((w) => {
+        if (typeof window === "undefined" || !window.Image) return;
+        const pre = new window.Image();
+        pre.decoding = "async";
+        if ("loading" in pre) {
+          (pre as HTMLImageElement).loading = "eager";
+        }
+        pre.src = mkUrl(img.src, w, QUALITY);
+      });
+    });
+  }, [index, images, hasImages]);
+
+  const next = useCallback(() => {
+    if (!hasImages) return;
+    setIndex((i) => (i + 1) % images.length);
+  }, [images.length, hasImages]);
+
+  const prev = useCallback(() => {
+    if (!hasImages) return;
+    setIndex((i) => (i - 1 + images.length) % images.length);
+  }, [images.length, hasImages]);
+
+  // Keyboard navigation (works in both minimized and maximized states)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        next();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prev();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [next, prev]);
+
+  const current = useMemo(() => images[index], [images, index]);
+
+  if (!hasImages) return null;
+
+  return (
+    <section id={id} className="carousel-section" aria-label="Bildkarussell">
+      <div className="carousel">
+
+        <button
+          className="carousel-nav carousel-nav--left"
+          type="button"
+          aria-label="Vorheriges Bild (Pfeil links)"
+          onClick={prev}
+        >
+          ‹
+        </button>
+
+        <div className="carousel-stage">
+          <NextImage
+            key={current.src}
+            src={current.src}
+            alt={current.alt}
+            fill
+            sizes="(min-width: 1024px) 1000px, 90vw"
+            quality={QUALITY}
+            fetchPriority={index === 0 ? "high" : undefined}
+            priority={index === 0}
+            unoptimized={UNOPTIMIZED}
+            className="carousel-img"
+          />
+        </div>
+
+        <button
+          className="carousel-nav carousel-nav--right"
+          type="button"
+          aria-label="Nächstes Bild (Pfeil rechts)"
+          onClick={next}
+        >
+          ›
+        </button>
+
+        <div className="carousel-dots" role="tablist" aria-label="Bildauswahl">
+          {images.map((img, i) => (
+            <button
+              key={img.src}
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Bild ${i + 1} auswählen`}
+              className={`carousel-dot ${i === index ? "is-active" : ""}`}
+              onClick={() => setIndex(i)}
+              type="button"
+            />
+          ))}
+        </div>
+      </div>
+
+    </section>
+  );
+}
+</file>
+
+<file path="app/page.tsx">
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Inter, Space_Grotesk } from 'next/font/google';
+import Image from 'next/image';
+import Carousel from '@/components/Carousel';
+
+const UNOPTIMIZED = process.env.NODE_ENV !== 'production';
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+});
+
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  weight: ['300', '400', '500', '600', '700']
+});
+
+export default function Home() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const [inGallery, setInGallery] = useState(false);
+  const [isCost1Open, setIsCost1Open] = useState(false);
+  const [isCost2Open, setIsCost2Open] = useState(false);
+  const [isCost3Open, setIsCost3Open] = useState(false);
+  const [isTime1Open, setIsTime1Open] = useState(false);
+  const [isTime2Open, setIsTime2Open] = useState(false);
+  const [isTime3Open, setIsTime3Open] = useState(false);
+
+  useEffect(() => {
+    // Set target date to November 10th, 2025 at 8:00 AM
+    const targetDate = new Date('2025-11-10T08:00:00');
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    // Intersection Observer for reveal animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    const cards = document.querySelectorAll('.feature-card');
+    cards.forEach(card => observer.observe(card));
+
+    return () => {
+      cards.forEach(card => observer.unobserve(card));
+    };
+  }, []);
+
+  useEffect(() => {
+    // Scroll-based active section detection
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('#option1, #option2, #option3');
+      let currentActive = '';
+      
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        // Section is active when visible in viewport, aligned with scroll-margin-top (120px)
+        if (rect.top <= 200 && rect.bottom >= 300) {
+          currentActive = section.id;
+        }
+      });
+
+      setActiveSection(currentActive);
+    };
+
+    handleScroll(); // Check on mount
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Compute gallery visibility: hide only after the Galerie heading scrolls past the header
+    const computeGalleryVisibility = () => {
+      const headerEl = document.querySelector('.main-header') as HTMLElement | null;
+      const headerH = headerEl?.offsetHeight ?? 80;
+      const heading = document.getElementById('gallery');
+      if (!heading) return setInGallery(false);
+
+      const headingTop = heading.getBoundingClientRect().top;
+      // Hide exactly when the fixed header would touch the Galerie heading
+      setInGallery(headingTop <= headerH);
+    };
+
+    computeGalleryVisibility();
+    window.addEventListener('scroll', computeGalleryVisibility, { passive: true });
+    window.addEventListener('resize', computeGalleryVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', computeGalleryVisibility);
+      window.removeEventListener('resize', computeGalleryVisibility);
+    };
+  }, []);
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailSubmitted(true);
+    setTimeout(() => {
+      setEmailSubmitted(false);
+      (e.target as HTMLFormElement).reset();
+    }, 3000);
+  };
+
+  return (
+    <div className={`printorchestra-container ${inter.variable} ${spaceGrotesk.variable}`}>
+      {/* Animated background particles */}
+      <div className="particle-container">
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+      </div>
+
+      {/* Main veil overlay */}
+      <div className="veil-overlay"></div>
+      
+      {/* Spotlight effect */}
+      <div 
+        className="spotlight"
+        style={{
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(100, 200, 255, 0.1) 0%, transparent 25%)`
+        }}
+      ></div>
+
+      {/* Header */}
+      <header className={`main-header ${scrolled ? 'header-scrolled' : 'header-top'} ${inGallery ? 'header-hidden' : ''}`}>
+        <div className="header-inner">
+          <div className="logo-container">
+            <a
+              href="/"
+              className="logo-link"
+              aria-label="Go to home"
+            >
+              <span className="logo-text">print<span className="logo-accent">Orchestra</span></span>
+            </a>
+            <span className="logo-tagline">AUTONOMOUS CREATION</span>
+          </div>
+          <nav className="nav-links nav-top">
+            <a href="#option1" className={`nav-button ${activeSection === 'option1' ? 'nav-button-active' : ''}`}>Möglichkeit 1</a>
+            <a href="#option2" className={`nav-button ${activeSection === 'option2' ? 'nav-button-active' : ''}`}>Möglichkeit 2</a>
+            <a href="#option3" className={`nav-button ${activeSection === 'option3' ? 'nav-button-active' : ''}`}>Möglichkeit 3</a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <main className="hero-container">
+        <div className="hero-split">
+          <div className="hero-left">
+            {/* Glitch text effect */}
+            <div className="glitch-container">
+              <h1 className="glitch-text" data-text="3D-DRUCK">3D-DRUCK</h1>
+              <div className="glitch-subtext">so einfach wie</div>
+              <h1 className="glitch-text" data-text="PAPIERDRUCK">PAPIERDRUCK</h1>
+              <p className="glitch-description">Wir verwandeln einen komplexen Laborprozess in ein System mit der Zuverlässigkeit von Industriemaschinen und der Einfachheit eines Papierdruckers.</p>
+            </div>
+          </div>
+          <div className="hero-right">
+            <Image
+              src="/hero-right.png"
+              alt="Resin printing process illustration"
+              width={900}
+              height={900}
+              priority
+              unoptimized={UNOPTIMIZED}
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="hero-image"
+            />
+          </div>
+        </div>
+
+        <div className="hero-bottom-glow" aria-hidden="true"></div>
+
+        {/* Feature teaser */}
+        <div className="features-grid">
+          <div className="feature-card" data-reveal="1">
+            <div className="feature-icon">◈</div>
+            <h3>Autonomes Nachfüllen</h3>
+            <p>Für einen ununterbrochenen Workflow</p>
+          </div>
+          <div className="feature-card" data-reveal="2">
+            <div className="feature-icon">◉</div>
+            <h3>Selbstreinigung</h3>
+            <p>Makellose Drucke, jedes Mal</p>
+          </div>
+          <div className="feature-card" data-reveal="3">
+            <div className="feature-icon">◊</div>
+            <h3>Intelligente Aushärtung</h3>
+            <p>Automatisierte Perfektion</p>
+          </div>
+          <div className="feature-card" data-reveal="4">
+            <div className="feature-icon">◆</div>
+            <h3>24/7-Betrieb</h3>
+            <p>Produktion, die niemals schläft</p>
+          </div>
+        </div>
+
+
+      </main>
+
+      {/* AI OS Section */}
+      <section className="ai-section">
+        <h2 className="ai-heading">KI-Betriebssystem</h2>
+        <p className="ai-paragraph">Übergeben Sie die 3D-Datei an die KI, und sie übernimmt den Druck für Sie – kein mühsames Anpassen von Druckparametern & Stützeinstellungen mehr.</p>
+        <div className="ai-image-wrap">
+          <Image
+            src="/ki-betriebssystem.png"
+            alt="KI-Betriebssystem UI"
+            width={1600}
+            height={900}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      {/* Next Feature Section */}
+      <section className="ai-section">
+        <h2 className="ai-heading">Neuartige UI & Steuerung</h2>
+        <div className="ai-paragraph" style={{ textAlign: 'left', fontSize: '1.05rem', lineHeight: 1.8 }}>
+          <div>- Space-Joystick mit 6 Freiheitsgraden für die immersive Visualisierung von 3D-Modellen.</div>
+          <div>- Leistungsstarker Controller mit KI-Betriebssystem (kein externer Computer erforderlich)</div>
+          <div>- Integrierte, hochwertige Slicing-Software innerhalb der KI-Systemarchitektur</div>
+          <div>- Perfekt abgestimmte Resin-Parameter und Druckprofile für eine Erfolgsquote von 99 %</div>
+          <div>- Einfache Übermittlung der 3D-Datei an die KI zur direkten Ausführung des Drucks</div>
+        </div>
+        <div className="ai-image-wrap">
+          <Image
+            src="/immersives-ui.png"
+            alt="Immersives UI mit Space-Joystick"
+            width={1600}
+            height={900}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      {/* UV Power Section */}
+      <section className="ai-section">
+        <h2 className="ai-heading">Präzise UV-Leistung – jederzeit</h2>
+        <p className="ai-paragraph">Ein interner UV-Leistungssensor misst und justiert die Leistung nach jeder Schicht. Ein externer UV-Leistungssensor an einem Roboterarm misst und justiert die UV-Leistung – und zwar genau so, wie sie beim Harz im Tank ankommt.</p>
+        <div className="ai-image-wrap">
+          <Image
+            src="/uv-leistung.png"
+            alt="UV-Leistungssensor innen und extern"
+            width={1600}
+            height={900}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      {/* German Quality Section */}
+      <section className="ai-section">
+        <h2 className="ai-heading">Zuverlässigkeit, die überzeugt.</h2>
+        <p className="ai-paragraph">Gleichmäßige, verbesserte aerodynamische Turbulator-Beheizung und Temperaturregelung von mehreren Standorten aus. Intelligente Bauplattform mit mehreren Echtzeitsensoren und Nivellieraktuatoren - Aktive, präzise Steuerung an allen vier Ecken für konstant perfekte Druckergebnisse: Kein manuelles Leveling mit A4-Papier mehr und kein Raten, ob der Abstand passt.</p>
+        <div className="ai-image-wrap">
+          <Image
+            src="/deutsche-qualitaet.png"
+            alt="Aerodynamische Beheizung und smarter Greifer"
+            width={1600}
+            height={900}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      {/* Sections */}
+      <section id="option1" className="content-section">
+<h2 className="section-title"><span className="section-title-main">Möglichkeit 1</span><span className="section-title-sub">Vollautomatisiert mit einem Roboterarm</span></h2>
+        <ul className="metrics-list">
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>💰</span>
+              <span className="metric-label">Entwicklungskosten</span>{' '}
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsCost1Open((open) => !open)}
+              >
+                Bis zu 4 Mio. €
+                <span className={`metric-toggle-arrow ${isCost1Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isCost1Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- 60 % Gehälter und externe Dienstleistungen</div>
+                <div className="metric-breakdown-line">- 15 % Werkzeuge und Ausrüstung (z. B. Oszilloskop)</div>
+                <div className="metric-breakdown-line">- 25 % Prototypenentwicklung</div>
+              </div>
+            )}
+          </li>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>⏱️</span>
+              <span className="metric-label">Entwicklungszeit</span>
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsTime1Open((open) => !open)}
+              >
+                Bis zu 3 Jahre
+                <span className={`metric-toggle-arrow ${isTime1Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isTime1Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 12 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 12 Monate</div>
+                <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
+              </div>
+            )}
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>🏭</span>
+            <span className="metric-label">Herstellungskosten</span>
+            <span className="metric-value">Bis zu 50.000 €</span>
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>🏷️</span>
+            <span className="metric-label">Verkaufspreis (UVP)</span>
+            <span className="pill pill--purple">120.000 €</span>
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>📈</span>
+            <span className="metric-label">Kunden-ROI</span>
+            <span className="pill pill--green">2 Jahre</span>
+          </li>
+        </ul>
+        <div className="ai-image-wrap" style={{ marginTop: '1.5rem' }}>
+          <Image
+            src="/moeglichkeit-1.png"
+            alt="Vollautomatisiertes System mit Roboterarm"
+            width={1600}
+            height={1200}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+      <section id="option2" className="content-section">
+<h2 className="section-title"><span className="section-title-main">Möglichkeit 2</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit speziellem 4K-Projektor</span></h2>
+        <ul className="metrics-list">
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>💰</span>
+              <span className="metric-label">Entwicklungskosten</span>{' '}
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsCost2Open((open) => !open)}
+              >
+                Bis zu 2 Mio. €
+                <span className={`metric-toggle-arrow ${isCost2Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isCost2Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- 60 % Gehälter und externe Dienstleistungen</div>
+                <div className="metric-breakdown-line">- 15 % Werkzeuge und Ausrüstung (z. B. Oszilloskop)</div>
+                <div className="metric-breakdown-line">- 25 % Prototypenentwicklung</div>
+              </div>
+            )}
+          </li>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>⏱️</span>
+              <span className="metric-label">Entwicklungszeit</span>
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsTime2Open((open) => !open)}
+              >
+                Bis zu 2 Jahre
+                <span className={`metric-toggle-arrow ${isTime2Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isTime2Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 6 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 6 Monate</div>
+                <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
+              </div>
+            )}
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>🏭</span>
+            <span className="metric-label">Herstellungskosten</span>
+            <span className="metric-value">Bis zu 8.000 €</span>
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>🏷️</span>
+            <span className="metric-label">Verkaufspreis (UVP)</span>
+            <span className="pill pill--purple">20.000 €</span>
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>📈</span>
+            <span className="metric-label">Kunden-ROI</span>
+            <span className="pill pill--green">2 Jahre</span>
+          </li>
+        </ul>
+        <div className="ai-image-wrap" style={{ marginTop: '1.5rem' }}>
+          <Image
+            src="/moeglichkeit-3.png"
+            alt="KI-Betriebssystem-Drucker mit LCD"
+            width={1600}
+            height={1200}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+      <section id="option3" className="content-section">
+        <h2 className="section-title"><span className="section-title-main">Möglichkeit 3</span><span className="section-title-sub">KI-Betriebssystem-Drucker mit LCD</span></h2>
+        <ul className="metrics-list">
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>💰</span>
+              <span className="metric-label">Entwicklungskosten</span>{' '}
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsCost3Open((open) => !open)}
+              >
+                Bis zu 1,5 Mio. €
+                <span className={`metric-toggle-arrow ${isCost3Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isCost3Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- 60 % Gehälter und externe Dienstleistungen</div>
+                <div className="metric-breakdown-line">- 15 % Werkzeuge und Ausrüstung (z. B. Oszilloskop)</div>
+                <div className="metric-breakdown-line">- 25 % Prototypenentwicklung</div>
+              </div>
+            )}
+          </li>
+          <li className="metric-item metric-item--with-breakdown">
+            <div className="metric-row-header">
+              <span className="metric-icon" aria-hidden>⏱️</span>
+              <span className="metric-label">Entwicklungszeit</span>
+              <button
+                type="button"
+                className="metric-value metric-value-toggle"
+                onClick={() => setIsTime3Open((open) => !open)}
+              >
+                Bis zu 2 Jahre
+                <span className={`metric-toggle-arrow ${isTime3Open ? 'is-open' : ''}`}> ▾</span>
+              </button>
+            </div>
+            {isTime3Open && (
+              <div className="metric-breakdown">
+                <div className="metric-breakdown-line">- Versuchsplanung (DoE) und Konstruktion – 6 Monate</div>
+                <div className="metric-breakdown-line">- Entwicklung unabhängiger Systeme (z. B. Slicer) – 6 Monate</div>
+                <div className="metric-breakdown-line">- Prototypenentwicklung einschließlich des finalen Prototyps – 6 Monate</div>
+                <div className="metric-breakdown-line">- Pufferzeit – 6 Monate</div>
+              </div>
+            )}
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>🏭</span>
+            <span className="metric-label">Herstellungskosten</span>
+            <span className="metric-value">Bis zu 6.000 €</span>
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>🏷️</span>
+            <span className="metric-label">Verkaufspreis (UVP)</span>
+            <span className="pill pill--purple">15.000 €</span>
+          </li>
+          <li className="metric-item">
+            <span className="metric-icon" aria-hidden>📈</span>
+            <span className="metric-label">Kunden-ROI</span>
+            <span className="pill pill--green">2 Jahre</span>
+          </li>
+        </ul>
+        <div className="ai-image-wrap" style={{ marginTop: '1.5rem' }}>
+          <Image
+            src="/moeglichkeit-3.png"
+            alt="KI-Betriebssystem-Drucker mit LCD"
+            width={1600}
+            height={1200}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      <section className="ai-section">
+        <h2 className="ai-heading">App-Steuerung</h2>
+        <p className="ai-paragraph">Im Folgenden sehen Sie eine Demonstration unserer Windows-Test-App, die einen Desk MC-5 Drucker steuert. Wir werden fortschrittliche Steuerungs-Apps für iOS, Android, Windows und Mac entwickeln.</p>
+        <div className="ai-image-wrap">
+          <Image
+            src="/app-control.png"
+            alt="App-Steuerung für Desk MC-5 Drucker"
+            width={1600}
+            height={900}
+            className="ai-image"
+            unoptimized={UNOPTIMIZED}
+            sizes="(min-width: 1024px) 80vw, 95vw"
+          />
+        </div>
+      </section>
+
+      {/* Gallery Heading */}
+      <section id="gallery" className="ai-section gallery-heading">
+        <h2 className="ai-heading">Galerie</h2>
+      </section>
+
+      {/* Carousel Section */}
+      <Carousel
+        id="gallery-carousel"
+        images={[
+          ...Array.from({ length: 49 }, (_, i) => ({
+            src: `/${i + 1}.png`,
+            alt: `Galerie Bild ${i + 1}`,
+          })),
+        ]}
+      />
+
+      {/* Footer */}
+      <footer className="main-footer">
+        <div className="footer-content">
+          <span>© 2025 printOrchestra</span>
+          <span className="separator">|</span>
+          <span>Engineering Tomorrow</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
+</file>
+
+</files>
